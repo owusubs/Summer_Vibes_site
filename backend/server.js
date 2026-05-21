@@ -117,13 +117,21 @@ const sendNotification = async ({ subject, replyTo, rows }) => {
     .map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value || "Not provided")}</p>`)
     .join("");
 
-  await resend.emails.send({
-    from: process.env.RESEND_FROM || "Summer Vibes <onboarding@resend.dev>",
-    to: [process.env.ORG_NOTIFICATION_EMAIL],
-    replyTo: replyTo || undefined,
-    subject,
-    html: `<h2>${escapeHtml(subject)}</h2>${htmlRows}`
-  });
+  try {
+    const { error } = await resend.emails.send({
+      from: process.env.RESEND_FROM || "Summer Vibes <onboarding@resend.dev>",
+      to: [process.env.ORG_NOTIFICATION_EMAIL],
+      replyTo: replyTo || undefined,
+      subject,
+      html: `<h2>${escapeHtml(subject)}</h2>${htmlRows}`
+    });
+
+    if (error) {
+      console.error("Resend notification failed", error);
+    }
+  } catch (error) {
+    console.error("Resend notification failed", error);
+  }
 };
 
 const runMigrations = async () => {
