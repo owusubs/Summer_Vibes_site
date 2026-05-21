@@ -1,6 +1,6 @@
-# Summers Vibes Website
+# Summer Vibes Website
 
-Summers Vibes is now set up as a deployable static website with a secure backend API.
+Summer Vibes is now set up as a deployable static website with a secure backend API.
 
 ## What Is Included
 
@@ -18,20 +18,20 @@ This project is prepared for Render using `render.yaml`.
 1. Push this folder to a GitHub repository.
 2. In Render, create a new Blueprint from the repository.
 3. Render will create:
-   - `summers-vibes-site`
-   - `summers-vibes-api`
-   - `summers-vibes-db`
+   - `summer-vibes-site`
+   - `summer-vibes-api`
+   - `summer-vibes-db`
 4. Add the secret environment variables when Render asks for them.
-5. Set `FRONTEND_ORIGIN` to the live website origin, for example:
+5. Set `FRONTEND_ORIGIN` to the live website origins. Include each published frontend that should submit forms, for example:
 
 ```text
-https://summers-vibes-site.onrender.com
+https://summer-vibes-web.onrender.com,https://owusubs.github.io
 ```
 
 6. In Stripe, add the webhook:
 
 ```text
-https://summers-vibes-api.onrender.com/api/stripe/webhook
+https://summer-vibes-api.onrender.com/api/stripe/webhook
 ```
 
 Subscribe the webhook to `checkout.session.completed`, then copy the signing secret into `STRIPE_WEBHOOK_SECRET`.

@@ -1,7 +1,7 @@
 {
-  "name": "summers-vibes-backend",
+  "name": "summer-vibes-backend",
   "version": "1.0.0",
-  "description": "Express API for Summers Vibes ticket checkout, contact forms, and newsletter signups.",
+  "description": "Express API for Summer Vibes ticket checkout, contact forms, and newsletter signups.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

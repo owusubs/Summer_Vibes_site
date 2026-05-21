@@ -1,4 +1,4 @@
-# Summers Vibes Backend
+# Summer Vibes Backend
 
 This Express API powers:
 
@@ -49,15 +49,17 @@ python -m http.server 8080
 `FRONTEND_ORIGIN` can contain multiple comma-separated origins, for example:
 
 ```text
-https://summers-vibes-site.onrender.com,http://localhost:8080,http://127.0.0.1:8080
+https://summer-vibes-web.onrender.com,https://owusubs.github.io,http://localhost:8080,http://127.0.0.1:8080
 ```
+
+The backend also allows the current Summer Vibes Render Static Site and GitHub Pages origins in code so both published frontends can submit forms. Keep `FRONTEND_ORIGIN` set to the frontend you want Stripe to use as its fallback return site.
 
 ## Stripe Webhook
 
 After deploying the API, create a Stripe webhook endpoint:
 
 ```text
-https://summers-vibes-api.onrender.com/api/stripe/webhook
+https://summer-vibes-api.onrender.com/api/stripe/webhook
 ```
 
 Subscribe it to:

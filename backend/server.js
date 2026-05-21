@@ -28,10 +28,16 @@ if (missingEnvironment.length) {
 
 const app = express();
 const port = Number(process.env.PORT || 10000);
-const frontendOrigins = process.env.FRONTEND_ORIGIN.split(",")
-  .map((origin) => origin.trim().replace(/\/$/, ""))
+const normalizeOrigin = (origin = "") => origin.trim().replace(/\/$/, "");
+const configuredFrontendOrigins = process.env.FRONTEND_ORIGIN.split(",")
+  .map(normalizeOrigin)
   .filter(Boolean);
-const primaryFrontendOrigin = frontendOrigins[0];
+const projectFrontendOrigins = [
+  "https://summer-vibes-web.onrender.com",
+  "https://owusubs.github.io"
+];
+const frontendOrigins = [...new Set([...configuredFrontendOrigins, ...projectFrontendOrigins])];
+const primaryFrontendOrigin = configuredFrontendOrigins[0] || frontendOrigins[0];
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: process.env.DATABASE_SSL === "false" ? false : { rejectUnauthorized: false }
@@ -101,13 +107,18 @@ const escapeHtml = (value = "") =>
 
 const isSpam = (payload) => Boolean(payload.website && payload.website.trim());
 
+const getRequestFrontendOrigin = (request) => {
+  const origin = normalizeOrigin(request.get("origin") || "");
+  return frontendOrigins.includes(origin) ? origin : primaryFrontendOrigin;
+};
+
 const sendNotification = async ({ subject, replyTo, rows }) => {
   const htmlRows = rows
     .map(([label, value]) => `<p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value || "Not provided")}</p>`)
     .join("");
 
   await resend.emails.send({
-    from: process.env.RESEND_FROM || "Summers Vibes <onboarding@resend.dev>",
+    from: process.env.RESEND_FROM || "Summer Vibes <onboarding@resend.dev>",
     to: [process.env.ORG_NOTIFICATION_EMAIL],
     replyTo: replyTo || undefined,
     subject,
@@ -209,7 +220,7 @@ app.post(
             session.id,
             session.payment_intent || null,
             metadata.ticketType || "unknown",
-            metadata.ticketName || "Summers Vibes ticket",
+            metadata.ticketName || "Summer Vibes ticket",
             Number(metadata.quantity || 1),
             session.amount_total || 0,
             session.currency || "gbp",
@@ -221,7 +232,7 @@ app.post(
         );
 
         await sendNotification({
-          subject: "New Summers Vibes ticket order",
+          subject: "New Summer Vibes ticket order",
           replyTo: buyerEmail,
           rows: [
             ["Ticket", metadata.ticketName],
@@ -245,7 +256,7 @@ app.post(
 app.use(
   cors({
     origin(origin, callback) {
-      const normalizedOrigin = origin ? origin.replace(/\/$/, "") : "";
+      const normalizedOrigin = normalizeOrigin(origin || "");
 
       if (!origin || frontendOrigins.includes(normalizedOrigin)) {
         callback(null, true);
@@ -267,7 +278,7 @@ app.use(
 );
 
 app.get("/api/health", (_request, response) => {
-  response.json({ ok: true, service: "summers-vibes-api" });
+  response.json({ ok: true, service: "summer-vibes-api" });
 });
 
 app.post("/api/contact", async (request, response, next) => {
@@ -293,7 +304,7 @@ app.post("/api/contact", async (request, response, next) => {
     );
 
     await sendNotification({
-      subject: topic === "accessibility" ? "New access question" : "New Summers Vibes message",
+      subject: topic === "accessibility" ? "New access question" : "New Summer Vibes message",
       replyTo: payload.email,
       rows: [
         ["Name", payload.name],
@@ -341,7 +352,7 @@ app.post("/api/newsletter", async (request, response, next) => {
     );
 
     await sendNotification({
-      subject: "New Summers Vibes newsletter signup",
+      subject: "New Summer Vibes newsletter signup",
       replyTo: payload.email,
       rows: [
         ["Email", payload.email],
@@ -370,13 +381,14 @@ app.post("/api/tickets/create-checkout-session", async (request, response, next)
   try {
     const ticket = ticketCatalog[payload.ticketType];
     const totalPence = ticket.amountPence * payload.quantity;
+    const checkoutFrontendOrigin = getRequestFrontendOrigin(request);
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       submit_type: "pay",
       payment_method_types: ["card"],
       customer_email: payload.email || undefined,
-      success_url: `${primaryFrontendOrigin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${primaryFrontendOrigin}/cancel.html`,
+      success_url: `${checkoutFrontendOrigin}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${checkoutFrontendOrigin}/cancel.html`,
       line_items: [
         {
           quantity: payload.quantity,
@@ -384,7 +396,7 @@ app.post("/api/tickets/create-checkout-session", async (request, response, next)
             currency: "gbp",
             unit_amount: ticket.amountPence,
             product_data: {
-              name: `Summers Vibes - ${ticket.name}`,
+              name: `Summer Vibes - ${ticket.name}`,
               description: ticket.description
             }
           }
@@ -452,10 +464,10 @@ app.use((error, _request, response, _next) => {
 runMigrations()
   .then(() => {
     app.listen(port, "0.0.0.0", () => {
-      console.log(`Summers Vibes API listening on port ${port}`);
+      console.log(`Summer Vibes API listening on port ${port}`);
     });
   })
   .catch((error) => {
-    console.error("Failed to start Summers Vibes API", error);
+    console.error("Failed to start Summer Vibes API", error);
     process.exit(1);
   });

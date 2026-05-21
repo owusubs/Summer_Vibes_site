@@ -4621,7 +4621,7 @@ p,a,label,input,select,textarea,button,.links a,.btn,.pill,.kicker {
         font-size: clamp(4rem,22vw,6.2rem)
     }
 }
-/* Travel page Summers Vibes palette refinement */
+/* Travel page Summer Vibes palette refinement */
 .travel-page .overlay {
     background: linear-gradient(180deg,rgba(7,22,51,.68),rgba(80,25,140,.38)), rgba(7,22,51,.16)
 }
@@ -5019,7 +5019,7 @@ p,a,label,input,select,textarea,button,.links a,.btn,.pill,.kicker {
         padding: 26px 18px
     }
 }
-/* Archiact inspired Summers Vibes footer */
+/* Archiact inspired Summer Vibes footer */
 .site-footer {
     position: relative;
     margin: 0;
@@ -5451,7 +5451,7 @@ p,a,label,input,select,textarea,button,.links a,.btn,.pill,.kicker {
 .site-footer .footer-newsletter-form {
     overflow: visible
 }
-/* Hologram inspired Summers Vibes footer refinement */
+/* Hologram inspired Summer Vibes footer refinement */
 .site-footer {
     margin: 0;
     padding: clamp(92px,9vw,150px) 0 0;
@@ -6467,7 +6467,7 @@ body {
     }
 }
 
-/* Master Summers Vibes footer */
+/* Master Summer Vibes footer */
 .site-footer {
     position: relative;
     padding: clamp(64px,8vw,112px) 18px 34px;

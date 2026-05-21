@@ -20,7 +20,7 @@ setInterval( () => {
         show(i + 1)
 }
 , 4500);
-const SUMMERS_VIBES_API_BASE_URL = (window.SUMMERS_VIBES_API_BASE_URL || 'https://summer-vibes-site.onrender.com').replace(/\/$/, '');
+const SUMMER_VIBES_API_BASE_URL = (window.SUMMER_VIBES_API_BASE_URL || 'https://summer-vibes-site.onrender.com').replace(/\/$/, '');
 const forms = document.querySelectorAll('form[data-smart-form]');
 const setFormStatus = (form, message, type = 'info') => {
     let msg = form.querySelector('.form-message');
@@ -62,13 +62,18 @@ const formToPayload = form => {
     return payload;
 };
 const apiRequest = async (path, payload) => {
-    const response = await fetch(`${SUMMERS_VIBES_API_BASE_URL}${path}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-    });
+    let response;
+    try {
+        response = await fetch(`${SUMMER_VIBES_API_BASE_URL}${path}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+    } catch (_error) {
+        throw new Error('The Summer Vibes service could not be reached. Refresh and try again.');
+    }
     const data = await response.json().catch( () => ({}));
     if (!response.ok)
         throw new Error(data.error || 'The request could not be completed. Please try again.');
@@ -86,8 +91,8 @@ const handleStandardSubmit = async (form, type) => {
         newsletter: '/api/newsletter'
     };
     const successMap = {
-        contact: form.dataset.successMessage || 'Thank you. Your message has been received for Summers Vibes.',
-        newsletter: form.dataset.successMessage || 'Thank you. You are signed up for Summers Vibes updates.'
+        contact: form.dataset.successMessage || 'Thank you. Your message has been received for Summer Vibes.',
+        newsletter: form.dataset.successMessage || 'Thank you. You are signed up for Summer Vibes updates.'
     };
     await apiRequest(endpointMap[type], formToPayload(form));
     setFormStatus(form, successMap[type], 'success');
