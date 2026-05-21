@@ -8,6 +8,12 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+ALTER TABLE IF EXISTS contact_messages
+  ADD COLUMN IF NOT EXISTS topic TEXT NOT NULL DEFAULT 'general';
+
+ALTER TABLE IF EXISTS contact_messages
+  ADD COLUMN IF NOT EXISTS source_page TEXT;
+
 CREATE TABLE IF NOT EXISTS newsletter_subscribers (
   id BIGSERIAL PRIMARY KEY,
   email TEXT NOT NULL,
