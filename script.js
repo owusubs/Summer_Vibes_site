@@ -20,7 +20,7 @@ setInterval( () => {
         show(i + 1)
 }
 , 4500);
-const SUMMERS_VIBES_API_BASE_URL = (window.SUMMERS_VIBES_API_BASE_URL || 'https://summers-vibes-api.onrender.com').replace(/\/$/, '');
+const SUMMERS_VIBES_API_BASE_URL = (window.SUMMERS_VIBES_API_BASE_URL || 'https://summer-vibes-site.onrender.com').replace(/\/$/, '');
 const forms = document.querySelectorAll('form[data-smart-form]');
 const setFormStatus = (form, message, type = 'info') => {
     let msg = form.querySelector('.form-message');
