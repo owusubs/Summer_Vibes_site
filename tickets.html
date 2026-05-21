@@ -1,0 +1,179 @@
+﻿<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Tickets | Summers Vibes</title>
+        <meta name="description" content="Summers Vibes Festival website: line-up, tickets, travel, accessibility, gallery and contact information.">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="page-bg" style="background-image:url('assets/image8.png')">
+        <div class="overlay">
+            <nav class="nav">
+                <a class="brand" href="index.html">
+                    <img src="assets/logo.png" alt="Summers Vibes logo">
+                    <span>SUMMERS VIBES</span>
+                </a>
+                <div class="links">
+                    <a class="" href="index.html">Home</a>
+                    <a class="" href="lineup.html">Line-up</a>
+                    <a class="active" href="tickets.html">Tickets</a>
+                    <a class="" href="plan-your-visit.html">Plan Your Visit</a>
+                    <a class="" href="gallery-news.html">Gallery & News</a>
+                    <a class="" href="contact-faq.html">Contact & FAQs</a>
+                    <a class="" href="headliners.html">Headliners</a>
+                    <a class="" href="by-day.html">By Day</a>
+                    <a class="" href="travel.html">Travel</a>
+                    <a class="" href="accessibility.html">Accessibility</a>
+                </div>
+            </nav>
+            <main class="tickets-page">
+                <section class="ticket-hero" style="background-image:url('assets/image8.png')">
+                    <div class="ticket-hero-copy">
+                        <span class="ticket-kicker">22 May 2026 &bull; Twickenham</span>
+                        <h1>Best Ticket Finder</h1>
+                        <p>Find your Summers Vibes pass faster and estimate your total before booking.</p>
+                    </div>
+                    <form class="ticket-finder" id="calculator" data-smart-form data-form-type="ticket" data-loading-text="Opening checkout..." aria-label="Ticket calculator">
+                        <div class="finder-route">
+                            <div>
+                                <span>Festival</span>
+                                <strong>Summers Vibes</strong>
+                            </div>
+                            <div>
+                                <span>Location</span>
+                                <strong>Twickenham</strong>
+                            </div>
+                        </div>
+                        <div class="trip-tabs" aria-label="Ticket choices">
+                            <a href="#weekend-pass">Weekend</a>
+                            <a class="active" href="#calculator">Book tickets</a>
+                            <a href="#vip-pass">VIP</a>
+                        </div>
+                        <div class="finder-box">
+                            <label for="ticketType">Ticket type</label>
+                            <select id="ticketType" name="ticketType" required>
+                                <option value="weekend" data-price="120">Weekend Pass - &pound;120</option>
+                                <option value="day" data-price="70">Day Ticket - &pound;70</option>
+                                <option value="vip" data-price="180">VIP Upgrade - &pound;180</option>
+                            </select>
+                            <label for="ticketQty">Quantity</label>
+                            <input id="ticketQty" name="quantity" type="number" min="1" max="10" value="1" required>
+                        </div>
+                        <div class="finder-row">
+                            <div>
+                                <span>Date</span>
+                                <strong>Fri 22 May</strong>
+                            </div>
+                            <button type="button" aria-label="Festival date">+</button>
+                        </div>
+                        <div class="finder-row">
+                            <div>
+                                <span>Entry</span>
+                                <strong>1 Adult (16+)</strong>
+                            </div>
+                            <button type="button" aria-label="Ticket holder">+</button>
+                        </div>
+                        <p class="finder-total">Total: <span id="ticketTotal">&pound;120.00</span></p>
+                        <button class="finder-submit" type="submit">Checkout securely</button>
+                        <p class="form-message" aria-live="polite"></p>
+                    </form>
+                </section>
+                <section class="ticket-options" aria-label="Ticket options">
+                    <div class="ticket-section-heading">
+                        <span>Choose your pass</span>
+                        <h2>Ticket options for every kind of festival day</h2>
+                    </div>
+                    <div class="ticket-card-grid">
+                        <article class="ticket-pass" id="weekend-pass">
+                            <span class="pass-label">Best value</span>
+                            <h3>Weekend Pass</h3>
+                            <p class="price">&pound;120</p>
+                            <p>Access to both festival days, main stage, food area and gallery zones.</p>
+                            <a class="btn" href="#calculator">Select Weekend Pass</a>
+                        </article>
+                        <article class="ticket-pass">
+                            <span class="pass-label">Flexible</span>
+                            <h3>Day Ticket</h3>
+                            <p class="price">&pound;70</p>
+                            <p>Access for one chosen day. Ideal for visitors who only want one stage day.</p>
+                            <a class="btn" href="#calculator">Select Day Ticket</a>
+                        </article>
+                        <article class="ticket-pass" id="vip-pass">
+                            <span class="pass-label">Premium</span>
+                            <h3>VIP Upgrade</h3>
+                            <p class="price">&pound;180</p>
+                            <p>Priority entry, viewing area and VIP lounge access.</p>
+                            <a class="btn" href="#calculator">Select VIP</a>
+                        </article>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <footer class="footer site-footer">
+            <div class="footer-shell">
+                <section class="footer-holo-cta" aria-labelledby="footer-cta-title">
+                    <div class="footer-holo-copy">
+                        <h2 id="footer-cta-title">Ready for Summers Vibes?</h2>
+                        <ul aria-label="Festival highlights">
+                            <li>22 May 2026</li>
+                            <li>Twickenham</li>
+                            <li>Music, travel and access info</li>
+                        </ul>
+                    </div>
+                    <div class="footer-cta-actions">
+                        <a class="footer-primary-btn" href="tickets.html">Get tickets <span aria-hidden="true">-&gt;</span></a>
+                        <a class="footer-outline-btn" href="plan-your-visit.html">Plan visit <span aria-hidden="true">-&gt;</span></a>
+                    </div>
+                </section>
+                <div class="footer-panel">
+                    <div class="footer-content">
+                        <div class="footer-brand-card">
+                            <a class="footer-logo" href="index.html" aria-label="Summers Vibes home">
+                                <img src="assets/logo.png" alt="Summers Vibes logo">
+                                <span>Summers Vibes</span>
+                            </a>
+                            <p>Music, travel, friends and summer nights in Twickenham.</p>
+                            <p class="footer-address">Langhorn Drive, Twickenham, Middlesex, TW2 7SJ</p>
+                        </div>
+                        <nav class="footer-column" aria-label="Explore Summers Vibes">
+                            <h3>Explore</h3>
+                            <a href="index.html">Home</a>
+                            <a href="lineup.html">Line-up</a>
+                            <a href="headliners.html">Headliners</a>
+                            <a href="by-day.html">By Day</a>
+                            <a href="gallery-news.html">Gallery & News</a>
+                        </nav>
+                        <nav class="footer-column" aria-label="Plan your festival weekend">
+                            <h3>Plan</h3>
+                            <a href="tickets.html">Tickets</a>
+                            <a href="plan-your-visit.html">Plan Your Visit</a>
+                            <a href="travel.html">Travel</a>
+                            <a href="accessibility.html">Accessibility</a>
+                        </nav>
+                        <nav class="footer-column" aria-label="Festival support">
+                            <h3>Help</h3>
+                            <a href="contact-faq.html">Contact & FAQs</a>
+                            <a href="accessibility.html">Access Support</a>
+                            <a href="tickets.html">Ticket Info</a>
+                            <a href="travel.html">Getting Here</a>
+                        </nav>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 Summers Vibes</p>
+                        <div>
+                            <a href="accessibility.html">Accessibility</a>
+                            <a href="contact-faq.html">Contact</a>
+                            <a href="tickets.html">Ticket Info</a>
+                        </div>
+                        <span class="footer-status">Festival info live</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+
